@@ -3,6 +3,9 @@ import "./StudentDashboard.css";
 import { EventContext } from "../context/EventContext";
 
 function StudentDashboard() {
+  const [activeAction, setActiveAction] = useState(null);
+const [activeTopAction, setActiveTopAction] = useState("student");
+
   const { approvedEvents } = useContext(EventContext);
   const [showToast, setShowToast] = useState(false);
 
@@ -15,27 +18,37 @@ function StudentDashboard() {
     }, 2000);
   };
 
-  return (
-    <div style={{ padding: "30px" }}>
+  return (<div className="student-page">
+  <div className="student-container">
+
       {/* ===== TOP BAR ===== */}
       <div className="student-topbar">
-        <h1>CampusEvents</h1>
+      <div className="student-hero">
+  <h1>
+    Discover <span>Campus Events</span>
+  </h1>
+ <p>
+  Workshops, seminars, hackathons and experiences{" "}
+  <span className="hero-highlight">curated for you</span>.
+</p>
 
-        <div className="student-actions">
+</div>
+       <div className="student-actions">
           <button className="btn-outline">Browse Events</button>
           <button className="btn-outline">Log In</button>
           <button className="btn-primary">Sign Up</button>
         </div>
       </div>
 
-      <h2>Explore Campus Events</h2>
-      <p>
-        Discover workshops, seminars, and club activities happening at your
-        college.
-      </p>
 
       {/* ===== UPCOMING EVENTS ===== */}
-      <h2 style={{ marginTop: "30px" }}>Upcoming Events</h2>
+  <div className="events-section">
+  <h2 className="section-title section-upcoming">Upcoming Events</h2>
+  {/* events grid */}
+</div>
+
+
+
 
       {approvedEvents.length === 0 ? (
         <p>No upcoming events available.</p>
@@ -70,6 +83,7 @@ function StudentDashboard() {
           ))}
         </div>
       )}
+      
 
       {/* ===== TOAST / NOTIFICATION POP ===== */}
       {showToast && (
@@ -78,7 +92,24 @@ function StudentDashboard() {
         </div>
       )}
     </div>
+    </div>
+    
   );
 }
+
+<footer className="app-footer">
+  <div className="footer-content">
+    <p>
+      © {new Date().getFullYear()} CampusHub · Built for smarter campus
+      experiences
+    </p>
+
+    <div className="footer-links">
+      <span>Privacy</span>
+      <span>Terms</span>
+      <span>Support</span>
+    </div>
+  </div>
+</footer>
 
 export default StudentDashboard;

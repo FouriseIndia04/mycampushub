@@ -74,8 +74,13 @@ function OrganiserDashboard() {
       {/* HEADER */}
       <div className="organiser-header">
         <div>
-          <h1>Organizer Dashboard</h1>
-          <p>Manage your events and track registrations.</p>
+          <h1>
+  Manage <span className="text-highlight">Your Events</span>
+</h1>
+<p className="subtitle">
+  Create, update and track your campus events
+</p>
+
         </div>
 <button
   className="primary-btn"
@@ -235,5 +240,20 @@ function OrganiserDashboard() {
     </div>
   );
 }
+<footer className="app-footer">
+  <div className="footer-content">
+    <p>
+      © {new Date().getFullYear()} CampusHub · Built for smarter campus
+      experiences
+    </p>
+
+    <div className="footer-links">
+      <span>Privacy</span>
+      <span>Terms</span>
+      <span>Support</span>
+    </div>
+  </div>
+</footer>
+
 
 export default OrganiserDashboard;

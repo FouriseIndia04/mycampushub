@@ -117,7 +117,8 @@
 }
 
 .primary-btn {
-  background: #2563eb;
+ background: linear-gradient(135deg, #7c3aed, #6d28d9);
+
   color: white;
   border: none;
   padding: 10px 18px;
@@ -127,7 +128,8 @@
 
 .btn-outline {
   border: 1px solid #dbeafe;
-  background: #eff6ff;
+ background: linear-gradient(135deg, #7c3aed, #6d28d9);
+
   padding: 10px 16px;
   border-radius: 10px;
   cursor: pointer;
@@ -267,4 +269,111 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+/* ===== SHARED BUTTON MOTION ===== */
+
+.btn-outline,
+.btn-primary,
+.primary-btn {
+  transition: all 0.25s ease;
+}
+
+.btn-outline:hover {
+  transform: translateY(-1px);
+}
+
+.btn-outline.active {
+  box-shadow: 0 10px 28px rgba(124, 58, 237, 0.35);
+}
+
+.btn-primary:hover,
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(124, 58, 237, 0.45);
+}
+
+.btn-primary:active,
+.primary-btn:active {
+  transform: scale(0.97);
+}
+.subtitle {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 15px;
+}
+/* ===============================
+   ORGANISER DASHBOARD – MOBILE
+   =============================== */
+
+@media (max-width: 768px) {
+  .organiser-container {
+    padding: 20px;
+  }
+
+  .organiser-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .organiser-header h1 {
+    font-size: 26px;
+  }
+
+  .primary-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* CREATE EVENT FORM */
+  .event-form {
+    padding: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  textarea {
+    min-height: 120px;
+  }
+
+  .upload-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  /* EVENTS GRID */
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .event-card img {
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .event-body h3 {
+    font-size: 16px;
+  }
+
+  .event-body p {
+    font-size: 14px;
+  }
+}
+
+/* SMALL PHONES */
+@media (max-width: 480px) {
+  .organiser-header h1 {
+    font-size: 22px;
+  }
+
+  .primary-btn,
+  .btn-outline {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
 }
