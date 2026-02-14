@@ -15,7 +15,9 @@
   margin-bottom: 24px;
 }
 
-/* STATS */
+/* =======================
+   STATS
+======================= */
 .admin-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -30,14 +32,18 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
-/* TOGGLES (SAME AS STUDENT) */
+/* =======================
+   TABS
+======================= */
 .admin-tabs {
   display: flex;
   gap: 14px;
   margin-bottom: 32px;
 }
 
-/* BUTTON SYSTEM */
+/* =======================
+   BUTTON SYSTEM
+======================= */
 .btn-outline {
   background: white;
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -65,14 +71,18 @@
   cursor: pointer;
 }
 
-/* GRID */
+/* =======================
+   MAIN GRID
+======================= */
 .admin-main {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 32px;
 }
 
-/* EVENT CARD */
+/* =======================
+   EVENT CARD
+======================= */
 .approval-card {
   display: flex;
   gap: 16px;
@@ -99,8 +109,10 @@
 .empty-text {
   color: #6b7280;
 }
-/* ===== SHARED BUTTON MOTION ===== */
 
+/* =======================
+   SHARED BUTTON MOTION
+======================= */
 .btn-outline,
 .btn-primary,
 .primary-btn {
@@ -125,24 +137,50 @@
 .primary-btn:active {
   transform: scale(0.97);
 }
+
+/* =======================
+   TEXT HIGHLIGHT
+======================= */
 .text-highlight {
   background: linear-gradient(135deg, #7c3aed, #6d28d9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
 }
-.chart-wrapper {
-  position: relative;
-  width: 260px;
-  margin: 0 auto;
+
+/* =======================
+   CATEGORY / CHART SECTION (IMPROVED)
+======================= */
+.category-section {
+  background: white;
+  border-radius: 18px;
+  padding: 28px 24px 26px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.category-section h2,
+.category-section h3 {
+  margin-bottom: 6px;
+}
+
+/* Chart positioning fix */
+.chart-wrapper {
+  position: relative;
+  width: 240px;
+  margin: 16px auto 8px;
+}
+
+/* Labels under chart */
 .chart-labels {
-  margin-top: 16px;
+  margin-top: 12px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px 16px;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px 22px;
   font-size: 14px;
+  justify-content: center;
 }
 
 .label {
@@ -174,6 +212,10 @@
 .label.sports::before {
   background: #fd7e14;
 }
+
+/* =======================
+   RESPONSIVE
+======================= */
 @media (max-width: 768px) {
   .admin-container {
     padding: 20px;
@@ -184,7 +226,6 @@
     text-align: center;
   }
 
-  /* ===== STATS ===== */
   .admin-stats {
     grid-template-columns: 1fr;
     gap: 15px;
@@ -195,7 +236,6 @@
     text-align: center;
   }
 
-  /* ===== TOGGLES ===== */
   .admin-tabs {
     flex-wrap: wrap;
     gap: 10px;
@@ -207,13 +247,11 @@
     min-width: 100px;
   }
 
-  /* ===== MAIN GRID ===== */
   .admin-main {
     grid-template-columns: 1fr;
     gap: 30px;
   }
 
-  /* ===== EVENT CARDS ===== */
   .approval-card {
     flex-direction: column;
     align-items: flex-start;
@@ -241,21 +279,15 @@
     flex: 1;
   }
 
-  /* ===== CHART ===== */
   .category-section {
-    align-items: center;
     text-align: center;
   }
 
-  .category-section svg {
+  .chart-wrapper {
     width: 220px;
-    height: 220px;
-  }
-
-  .chart-labels {
-    margin-top: 15px;
   }
 }
+
 @media (max-width: 480px) {
   .admin-title {
     font-size: 22px;
