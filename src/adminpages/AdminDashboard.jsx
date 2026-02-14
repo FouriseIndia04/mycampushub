@@ -5,8 +5,14 @@ import { EventContext } from "../context/EventContext";
 
 function AdminDashboard() {
   const navigate = useNavigate();
-  const { events, approvedEvents, pendingEvents, updateEventStatus } =
-    useContext(EventContext);
+
+  const {
+    events,
+    approvedEvents,
+    pendingEvents,
+    updateEventStatus,
+    deleteEvent, // ✅ ONLY delete API
+  } = useContext(EventContext);
 
   const [activeTab, setActiveTab] = useState("pending");
 
@@ -21,23 +27,86 @@ function AdminDashboard() {
       ? approvedEvents
       : rejectedEvents;
 
-  // ===== STATS =====
+  /* =========================
+     STATS
+     ========================= */
+
   const totalEvents = events.length;
+
   const totalRegistrations = approvedEvents.reduce(
     (sum, e) => sum + (e.registrations || 0),
     0
   );
 
-  // ===== CATEGORY LOGIC =====
-  const getCount = (cat) =>
-    approvedEvents.filter((e) => e.category === cat).length;
+  /* =========================
+     DELETE HANDLER (FIXED)
+     ========================= */
 
-  const totalApproved = approvedEvents.length || 4;
+  const handleDeleteEvent = (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to permanently delete this rejected event?"
+    );
 
-  const techPct = Math.round((getCount("Technology") / totalApproved) * 100);
-  const culturalPct = Math.round((getCount("Cultural") / totalApproved) * 100);
-  const academicPct = Math.round((getCount("Academic") / totalApproved) * 100);
-  const sportsPct = Math.round((getCount("Sports") / totalApproved) * 100);
+    if (!confirmDelete) return;
+
+    deleteEvent(id); // ✅ CORRECT
+  };
+
+  /* =========================
+     PIE CHART LOGIC
+     ========================= */
+
+  const CATEGORY_COLORS = {
+    Technology: "#6a4cff",
+    Cultural: "#ec4899",
+    Academic: "#22c55e",
+    Sports: "#f59e0b",
+  };
+
+  const categoryCounts = approvedEvents.reduce((acc, event) => {
+    acc[event.category] = (acc[event.category] || 0) + 1;
+    return acc;
+  }, {});
+
+  const totalApproved = approvedEvents.length;
+
+  const polarToCartesian = (cx, cy, r, angle) => {
+    const rad = ((angle - 90) * Math.PI) / 180;
+    return {
+      x: cx + r * Math.cos(rad),
+      y: cy + r * Math.sin(rad),
+    };
+  };
+
+  const describeArc = (cx, cy, r, startAngle, endAngle) => {
+    const start = polarToCartesian(cx, cy, r, endAngle);
+    const end = polarToCartesian(cx, cy, r, startAngle);
+    const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+
+    return [
+      "M",
+      cx,
+      cy,
+      "L",
+      start.x,
+      start.y,
+      "A",
+      r,
+      r,
+      0,
+      largeArcFlag,
+      0,
+      end.x,
+      end.y,
+      "Z",
+    ].join(" ");
+  };
+
+  let cumulativeAngle = 0;
+
+  /* =========================
+     RENDER
+     ========================= */
 
   return (
     <div className="admin-page">
@@ -62,7 +131,7 @@ function AdminDashboard() {
           </div>
         </div>
 
-        {/* ===== TOGGLES ===== */}
+        {/* ===== TABS ===== */}
         <div className="admin-tabs">
           <button
             className={`btn-outline ${activeTab === "pending" ? "active" : ""}`}
@@ -84,9 +153,8 @@ function AdminDashboard() {
           </button>
         </div>
 
-        {/* ===== MAIN GRID ===== */}
         <div className="admin-main">
-          {/* EVENTS */}
+          {/* ===== EVENTS LIST ===== */}
           <div>
             {filteredEvents.length === 0 ? (
               <p className="empty-text">No {activeTab} events.</p>
@@ -104,7 +172,12 @@ function AdminDashboard() {
 
                     <button
                       className="btn-outline"
-                      onClick={() => navigate(`/event/${event.id}`)}
+                      onClick={() =>
+  navigate(`/event/${event.id}`, {
+    state: { role: "admin" },
+  })
+}
+
                     >
                       View Details
                     </button>
@@ -129,28 +202,78 @@ function AdminDashboard() {
                         </button>
                       </div>
                     )}
+
+                    {/* 🔥 DELETE ONLY FOR REJECTED */}
+                    {activeTab === "rejected" && (
+                      <button
+                        className="btn-outline danger"
+                        onClick={() => handleDeleteEvent(event.id)}
+                      >
+                        Delete Permanently
+                      </button>
+                    )}
                   </div>
                 </div>
               ))
             )}
           </div>
 
-          {/* ===== CATEGORY CHART ===== */}
+          {/* ===== PIE CHART ===== */}
           <div className="category-section">
             <h2>Event Categories</h2>
 
-            <svg width="260" height="260" viewBox="0 0 260 260">
-              <path d="M130 130 L130 20 A110 110 0 0 1 240 130 Z" fill="#0d6efd" />
-              <path d="M130 130 L20 130 A110 110 0 0 1 130 20 Z" fill="#20c997" />
-              <path d="M130 130 L130 240 A110 110 0 0 1 20 130 Z" fill="#ffc107" />
-              <path d="M130 130 L240 130 A110 110 0 0 1 130 240 Z" fill="#fd7e14" />
-            </svg>
+            {totalApproved === 0 ? (
+              <p className="empty-text">No approved events</p>
+            ) : (
+              <svg width="260" height="260" viewBox="0 0 260 260">
+                {Object.entries(categoryCounts).map(
+                  ([category, count]) => {
+                    const angle =
+                      (count / totalApproved) * 360;
+
+                    const path = describeArc(
+                      130,
+                      130,
+                      110,
+                      cumulativeAngle,
+                      cumulativeAngle + angle
+                    );
+
+                    cumulativeAngle += angle;
+
+                    return (
+                      <path
+                        key={category}
+                        d={path}
+                        fill={
+                          CATEGORY_COLORS[category] || "#999"
+                        }
+                      />
+                    );
+                  }
+                )}
+              </svg>
+            )}
 
             <div className="chart-labels">
-              <div className="label tech">Technology {techPct}%</div>
-              <div className="label cultural">Cultural {culturalPct}%</div>
-              <div className="label academic">Academic {academicPct}%</div>
-              <div className="label sports">Sports {sportsPct}%</div>
+              {Object.entries(categoryCounts).map(
+                ([category, count]) => (
+                  <div key={category} className="label">
+                    <span
+                      className="dot"
+                      style={{
+                        background:
+                          CATEGORY_COLORS[category] || "#999",
+                      }}
+                    />
+                    {category}{" "}
+                    {Math.round(
+                      (count / totalApproved) * 100
+                    )}
+                    %
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>

@@ -30,8 +30,8 @@ export function EventProvider({ children }) {
       {
         ...event,
         status: "pending",
-        registrations: 0
-      }
+        registrations: 0,
+      },
     ]);
   };
 
@@ -44,6 +44,13 @@ export function EventProvider({ children }) {
       prev.map((e) =>
         e.id === id ? { ...e, status } : e
       )
+    );
+  };
+
+  // 🔥 DELETE REJECTED EVENT (PERMANENT)
+  const deleteEvent = (id) => {
+    setEvents((prev) =>
+      prev.filter((event) => event.id !== id)
     );
   };
 
@@ -76,7 +83,6 @@ export function EventProvider({ children }) {
   const rejectedEvents = events.filter(
     (e) => e.status === "rejected"
   );
-  
 
   return (
     <EventContext.Provider
@@ -87,7 +93,8 @@ export function EventProvider({ children }) {
         rejectedEvents,
         addEvent,
         updateEventStatus,
-        registerForEvent
+        deleteEvent,       //✅ EXPOSED
+        registerForEvent,
       }}
     >
       {children}
