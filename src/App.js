@@ -1,28 +1,50 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
-import StudentDashboard from "./studentpages/StudentDashboard";
-import AdminDashboard from "./adminpages/AdminDashboard";
-import ViewDetails from "./studentpages/ViewDetails";
-import OrganiserDashboard from "./organiserpages/OrganiserDashboard";
-
+import { AuthProvider } from "./context/AuthContext";
 import { EventProvider } from "./context/EventContext";
+
+
+
+import Login from "./loginpages/Login";
+import Signup from "./loginpages/Signup";
+import ForgotPassword from "./loginpages/ForgotPassword";
+
+import StudentAuth from "./loginpages/StudentAuth";
+import OrganizerAuth from "./loginpages/OrganizerAuth";
+import AdminAuth from "./loginpages/AdminAuth";
+
 
 function App() {
   return (
+    <AuthProvider>
     <EventProvider>
       <Router>
         <Routes>
-          <Route path="/organiser" element={<OrganiserDashboard />}/>
-          <Route path="/" element={<StudentDashboard />} />
-          <Route path="/student" element={<StudentDashboard />} />
-          <Route path="/admin" element={<AdminDashboard />} />
 
-          {/* 🔑 THIS IS THE IMPORTANT ONE */}
-          <Route path="/event/:id" element={<ViewDetails />} />
+          
+
+          {/* ✅ AUTH ROUTES */}
+          <Route path="/student-auth" element={<StudentAuth />} />
+          <Route path="/organizer-auth" element={<OrganizerAuth />} />
+          <Route path="/admin-auth" element={<AdminAuth />} />
+
+          
+          <Route path="/" element={<Login />} />
+
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+
+
+
+
+
         </Routes>
       </Router>
     </EventProvider>
+    </AuthProvider>
   );
 }
 

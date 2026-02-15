@@ -1,0 +1,138 @@
+/* ===== MAIN CONTAINER ===== */
+.organizer-auth-container {
+  display: flex;
+  width: 90%;
+  max-width: 1000px;
+  min-height: 550px;
+  background: #f1f5f9;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== LEFT SIDE ===== */
+.organizer-auth-left {
+  flex: 1;
+  background-color: #b22cd3;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  border-bottom-left-radius: 60px;
+  border-top-left-radius: 60px;
+}
+
+.organizer-auth-left h1 {
+  font-size: 30px;
+  margin-top: 60px;
+}
+
+.organizer-auth-left h2 {
+  font-size: 30px;
+  margin-top: 70px;
+}
+
+.organizer-auth-left p {
+  line-height: 1.6;
+  margin-top: 60px;
+}
+
+/* ===== RIGHT SIDE ===== */
+.organizer-auth-right {
+  flex: 1;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.organizer-auth-box {
+  width: 100%;
+  max-width: 380px;
+}
+
+.organizer-auth-box h2 {
+  margin-bottom: 20px;
+}
+
+.organizer-auth-box label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.organizer-auth-box input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 10px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.organizer-auth-box input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
+}
+
+/* ===== BUTTON ===== */
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  background: linear-gradient(90deg, #7d25c5, #4f46e5);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s, transform 0.2s;
+}
+
+.primary-btn:hover {
+  opacity: 0.95;
+  transform: scale(1.02);
+}
+
+/* ===== SWITCH TEXT ===== */
+.switch-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.switch-text span {
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.switch-text span:hover {
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .organizer-auth-container {
+    flex-direction: column;
+  }
+
+  .organizer-auth-left {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .organizer-auth-container {
+    width: 95%;
+    border-radius: 10px;
+  }
+
+  .organizer-auth-right {
+    padding: 20px;
+  }
+}

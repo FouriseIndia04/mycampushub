@@ -1,0 +1,245 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: outfit;
+
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f1f5f9;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.auth-container {
+  display: flex;
+  width: 90%;
+  max-width: 1000px;
+  min-height: 550px;
+  background: #f1f5f9;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== LEFT SIDE ===== */
+.auth-left {
+  flex: 1;
+  background-color: #b22cd3;   /* Solid Purple */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  border-bottom-left-radius: 60px;
+  border-top-left-radius: 60px;
+}
+
+
+.auth-left h1 {
+  font-size: 30px;
+  margin-top: 60px ;
+  
+}
+.auth-left h2{
+ font-size: 30px;
+  margin-top: 70px; 
+}
+
+.auth-left p {
+  line-height: 1.6;
+  margin-top: 60px;
+}
+
+.logo {
+  margin-bottom: 30px;
+}
+
+/* ===== RIGHT SIDE ===== */
+.auth-right {
+  flex: 1;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 380px;
+}
+
+.auth-box h2 {
+  margin-bottom: 20px;
+}
+
+.auth-box label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 10px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.auth-box input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  background: linear-gradient(90deg, #7d25c5, #4f46e5);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s, transform 0.2s;
+}
+
+.primary-btn:hover {
+  opacity: 0.95;
+  transform: scale(1.02);
+}
+
+hr {
+  margin: 25px 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+.signup-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+/* ===== QUICK DEMO LOGIN ===== */
+.quick-login {
+  background: #e5e7eb;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.quick-login p {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.demo-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.demo-buttons button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: white;
+  transition: 0.3s;
+}
+
+.demo-buttons button:hover {
+  background: #d1d5db;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .auth-container {
+    flex-direction: column;
+  }
+
+  .auth-left {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+    align-items: flex-start;
+    padding: 20px 0;
+  }
+
+  .auth-container {
+    width: 95%;
+    border-radius: 10px;
+  }
+
+  .auth-right {
+    padding: 20px;
+  }
+}
+
+.forgot-password {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+/* Container to center the button */
+.google-login-container {
+  display: flex;
+  justify-content: center;   /* centers horizontally */
+  margin: 30px 0;            /* spacing above/below */
+}
+
+/* Google button */
+.google-btn {
+  display: flex;
+  align-items: center;       /* vertically center icon and text */
+  gap: 12px;                 /* space between icon and text */
+  padding: 12px 70px;        /* increase size */
+  font-size: 18px;            /* bigger text */
+  background: white;
+  color: #444;
+  border: 1px solid #ccc;
+  border-radius: 10px;        /* rounded corners */
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  min-width: 250px;           /* optional: make button wider */
+}
+
+.google-btn:hover {
+  background: #f1f1f1;
+}
+
+/* Google logo inside the button */
+.google-icon {
+  width: 28px;   /* bigger icon */
+  height: 28px;
+}
