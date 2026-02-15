@@ -11,10 +11,14 @@ function AdminDashboard() {
     approvedEvents,
     pendingEvents,
     updateEventStatus,
-    deleteEvent, // ✅ ONLY delete API
+    deleteEvent,
   } = useContext(EventContext);
 
   const [activeTab, setActiveTab] = useState("pending");
+
+  /* =========================
+     FILTERING
+  ========================= */
 
   const rejectedEvents = events.filter(
     (e) => e.status === "rejected"
@@ -29,7 +33,7 @@ function AdminDashboard() {
 
   /* =========================
      STATS
-     ========================= */
+  ========================= */
 
   const totalEvents = events.length;
 
@@ -39,8 +43,8 @@ function AdminDashboard() {
   );
 
   /* =========================
-     DELETE HANDLER (FIXED)
-     ========================= */
+     DELETE HANDLER
+  ========================= */
 
   const handleDeleteEvent = (id) => {
     const confirmDelete = window.confirm(
@@ -49,12 +53,12 @@ function AdminDashboard() {
 
     if (!confirmDelete) return;
 
-    deleteEvent(id); // ✅ CORRECT
+    deleteEvent(id);
   };
 
   /* =========================
      PIE CHART LOGIC
-     ========================= */
+  ========================= */
 
   const CATEGORY_COLORS = {
     Technology: "#6a4cff",
@@ -106,7 +110,7 @@ function AdminDashboard() {
 
   /* =========================
      RENDER
-     ========================= */
+  ========================= */
 
   return (
     <div className="admin-page">
@@ -134,19 +138,27 @@ function AdminDashboard() {
         {/* ===== TABS ===== */}
         <div className="admin-tabs">
           <button
-            className={`btn-outline ${activeTab === "pending" ? "active" : ""}`}
+            className={`btn-outline ${
+              activeTab === "pending" ? "active" : ""
+            }`}
             onClick={() => setActiveTab("pending")}
           >
             Pending
           </button>
+
           <button
-            className={`btn-outline ${activeTab === "approved" ? "active" : ""}`}
+            className={`btn-outline ${
+              activeTab === "approved" ? "active" : ""
+            }`}
             onClick={() => setActiveTab("approved")}
           >
             Approved
           </button>
+
           <button
-            className={`btn-outline ${activeTab === "rejected" ? "active" : ""}`}
+            className={`btn-outline ${
+              activeTab === "rejected" ? "active" : ""
+            }`}
             onClick={() => setActiveTab("rejected")}
           >
             Rejected
@@ -157,11 +169,16 @@ function AdminDashboard() {
           {/* ===== EVENTS LIST ===== */}
           <div>
             {filteredEvents.length === 0 ? (
-              <p className="empty-text">No {activeTab} events.</p>
+              <p className="empty-text">
+                No {activeTab} events.
+              </p>
             ) : (
               filteredEvents.map((event) => (
                 <div key={event.id} className="approval-card">
-                  <img src={event.image} alt={event.title} />
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                  />
 
                   <div className="approval-info">
                     <h3>{event.title}</h3>
@@ -170,32 +187,40 @@ function AdminDashboard() {
                     </p>
                     <p>📍 {event.venue}</p>
 
+                    {/* VIEW ONLY — NO REGISTER */}
                     <button
                       className="btn-outline"
                       onClick={() =>
-  navigate(`/event/${event.id}`, {
-    state: { role: "admin" },
-  })
-}
-
+                        navigate(`/event/${event.id}`, {
+                          state: { role: "admin" },
+                        })
+                      }
                     >
                       View Details
                     </button>
 
+                    {/* ACTIONS */}
                     {activeTab === "pending" && (
                       <div className="approval-actions">
                         <button
                           className="btn-primary"
                           onClick={() =>
-                            updateEventStatus(event.id, "approved")
+                            updateEventStatus(
+                              event.id,
+                              "approved"
+                            )
                           }
                         >
                           Approve
                         </button>
+
                         <button
                           className="btn-outline danger"
                           onClick={() =>
-                            updateEventStatus(event.id, "rejected")
+                            updateEventStatus(
+                              event.id,
+                              "rejected"
+                            )
                           }
                         >
                           Reject
@@ -203,11 +228,12 @@ function AdminDashboard() {
                       </div>
                     )}
 
-                    {/* 🔥 DELETE ONLY FOR REJECTED */}
                     {activeTab === "rejected" && (
                       <button
                         className="btn-outline danger"
-                        onClick={() => handleDeleteEvent(event.id)}
+                        onClick={() =>
+                          handleDeleteEvent(event.id)
+                        }
                       >
                         Delete Permanently
                       </button>
@@ -218,14 +244,20 @@ function AdminDashboard() {
             )}
           </div>
 
-          {/* ===== PIE CHART ===== */}
+          {/* ===== CATEGORY CHART ===== */}
           <div className="category-section">
             <h2>Event Categories</h2>
 
             {totalApproved === 0 ? (
-              <p className="empty-text">No approved events</p>
+              <p className="empty-text">
+                No approved events
+              </p>
             ) : (
-              <svg width="260" height="260" viewBox="0 0 260 260">
+              <svg
+                width="260"
+                height="260"
+                viewBox="0 0 260 260"
+              >
                 {Object.entries(categoryCounts).map(
                   ([category, count]) => {
                     const angle =
@@ -246,7 +278,8 @@ function AdminDashboard() {
                         key={category}
                         d={path}
                         fill={
-                          CATEGORY_COLORS[category] || "#999"
+                          CATEGORY_COLORS[category] ||
+                          "#999"
                         }
                       />
                     );
@@ -258,12 +291,16 @@ function AdminDashboard() {
             <div className="chart-labels">
               {Object.entries(categoryCounts).map(
                 ([category, count]) => (
-                  <div key={category} className="label">
+                  <div
+                    key={category}
+                    className="label"
+                  >
                     <span
                       className="dot"
                       style={{
                         background:
-                          CATEGORY_COLORS[category] || "#999",
+                          CATEGORY_COLORS[category] ||
+                          "#999",
                       }}
                     />
                     {category}{" "}
