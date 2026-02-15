@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import Profile from "./studentpages/Profile";
 import StudentDashboard from "./studentpages/StudentDashboard";
 import AdminDashboard from "./adminpages/AdminDashboard";
 import ViewDetails from "./studentpages/ViewDetails";
@@ -13,6 +13,7 @@ function App() {
     <EventProvider>
       <Router>
         <Routes>
+         <Route path="/profile" element={<Profile />} />
           <Route path="/organiser" element={<OrganiserDashboard />}/>
           <Route path="/" element={<StudentDashboard />} />
           <Route path="/student" element={<StudentDashboard />} />
@@ -23,6 +24,12 @@ function App() {
         </Routes>
       </Router>
     </EventProvider>
+  );
+}
+if (!localStorage.getItem("campushub_user")) {
+  localStorage.setItem(
+    "campushub_user",
+    JSON.stringify({ role: "student" })
   );
 }
 

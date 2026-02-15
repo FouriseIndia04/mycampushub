@@ -53,6 +53,26 @@ export function EventProvider({ children }) {
       prev.filter((event) => event.id !== id)
     );
   };
+const SEED_EVENTS = [
+  {
+    id: 1,
+    title: "Tech Hackathon 2026",
+    category: "Technology",
+    date: "2026-03-10",
+    venue: "Main Auditorium",
+    description: "48-hour coding challenge",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+    status: "approved",
+    registrations: 120,
+  },
+];
+
+useEffect(() => {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (!stored) {
+    setEvents(SEED_EVENTS);
+  }
+}, []);
 
   /* =========================
      STUDENT

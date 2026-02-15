@@ -4,15 +4,13 @@ import { EventContext } from "../context/EventContext";
 import { useNavigate } from "react-router-dom";
 
 function StudentDashboard() {
-  const [activeAction, setActiveAction] = useState(null);
-  const [activeTopAction, setActiveTopAction] = useState("student");
-
   const { approvedEvents } = useContext(EventContext);
   const navigate = useNavigate();
 
   return (
     <div className="student-page">
       <div className="student-container">
+
         {/* ===== TOP BAR ===== */}
         <div className="student-topbar">
           <div className="student-hero">
@@ -25,10 +23,13 @@ function StudentDashboard() {
             </p>
           </div>
 
-          <div className="student-actions">
-            <button className="btn-outline">Browse Events</button>
-            <button className="btn-outline">Log In</button>
-            <button className="btn-primary">Sign Up</button>
+          {/* PROFILE ICON */}
+          <div
+            className="profile-icon"
+            title="Profile"
+            onClick={() => navigate("/profile")}
+          >
+            👤
           </div>
         </div>
 
@@ -50,7 +51,6 @@ function StudentDashboard() {
 
                 <div className="event-content">
                   <h3>{event.title}</h3>
-
                   <div className="event-meta">📅 {event.date}</div>
                   <div className="event-meta">📍 {event.venue}</div>
                   <div className="event-meta">
@@ -72,22 +72,20 @@ function StudentDashboard() {
         )}
       </div>
 
-     <footer class="premium-footer">
-  <div class="footer-inner">
-    <div class="footer-left">
-      <span class="app-name">CampusHub</span>
-      <span class="divider">•</span>
-      <span class="tagline">Smart Campus Event Management</span>
-    </div>
-
-    <div class="footer-right">
-      <span>© 2026 CampusHub</span>
-      <span class="divider">|</span>
-      <span>All rights reserved</span>
-    </div>
-  </div>
-</footer>
-
+      <footer className="premium-footer">
+        <div className="footer-inner">
+          <div className="footer-left">
+            <span className="app-name">CampusHub</span>
+            <span className="divider">•</span>
+            <span className="tagline">Smart Campus Event Management</span>
+          </div>
+          <div className="footer-right">
+            <span>© 2026 CampusHub</span>
+            <span className="divider">|</span>
+            <span>All rights reserved</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
