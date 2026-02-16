@@ -14,7 +14,7 @@ const Hero = () => {
         </span>
 
         <h1>
-          Your Campus,
+          Your Campushub,
           <br />
           <span>Your Events</span>
         </h1>
