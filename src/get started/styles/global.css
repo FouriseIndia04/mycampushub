@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+body {
+  background: #f6f7fb;
+  color: #0f172a;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px;
+}
+/* ===== DASHBOARD FULL WIDTH OVERRIDE ===== */
+.student-page {
+  max-width: none !important;
+  width: 100vw !important;
+  margin: 0 !important;
+}

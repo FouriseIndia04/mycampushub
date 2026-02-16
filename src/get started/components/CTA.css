@@ -1,0 +1,51 @@
+.cta-section {
+  padding: 100px 20px;
+  background:
+    radial-gradient(circle at top left, rgba(124,58,237,.25), transparent 40%),
+    linear-gradient(135deg, #0f172a, #020617);
+  display: flex;
+  justify-content: center;
+}
+
+.cta-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  border-radius: 28px;
+  padding: 64px 48px;
+  text-align: center;
+  max-width: 700px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.cta-card h2 {
+  font-size: 42px;
+  color: white;
+}
+
+.cta-card h2 span {
+  background: linear-gradient(135deg,#7c3aed,#4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cta-card p {
+  margin-top: 16px;
+  color: rgba(255,255,255,0.75);
+}
+
+.cta-btn {
+  margin-top: 36px;
+  padding: 16px 38px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(135deg,#7c3aed,#4f46e5);
+  transition: all .3s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px rgba(124,58,237,.6);
+}

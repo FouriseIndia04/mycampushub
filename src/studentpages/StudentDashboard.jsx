@@ -2,10 +2,28 @@ import React, { useState, useContext } from "react";
 import "./StudentDashboard.css";
 import { EventContext } from "../context/EventContext";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Login-ui/context/AuthContext";
 
 function StudentDashboard() {
   const { approvedEvents } = useContext(EventContext);
+  const { user } = useAuth();
   const navigate = useNavigate();
+
+  const studentName = user?.name || "Student";
+
+  /* ===== SEARCH + SORT STATE ===== */
+  const [search, setSearch] = useState("");
+  const [sortBy, setSortBy] = useState("date");
+
+  const filteredEvents = approvedEvents
+    .filter((event) =>
+      event.title.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (sortBy === "date") return new Date(a.date) - new Date(b.date);
+      if (sortBy === "time") return a.time?.localeCompare(b.time || "");
+      return 0;
+    });
 
   return (
     <div className="student-page">
@@ -23,13 +41,47 @@ function StudentDashboard() {
             </p>
           </div>
 
-          {/* PROFILE ICON */}
-          <div
-            className="profile-icon"
-            title="Profile"
-            onClick={() => navigate("/profile")}
-          >
-            👤
+          {/* ===== GREETING + PROFILE ===== */}
+          <div className="student-greeting">
+            <div className="greeting-text">
+              Hi, <span>{studentName}</span> 👋
+            </div>
+
+            <div
+              className="profile-icon"
+              title="Profile"
+              onClick={() => navigate("/profile")}
+            >
+              👤
+            </div>
+          </div>
+        </div>
+
+        {/* ===== SEARCH + SORT ===== */}
+        <div className="search-sort-bar">
+          <div className="search-box">
+            🔍
+            <input
+              type="text"
+              placeholder="Search events, workshops, hackathons..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+
+          <div className="sort-toggle">
+            <span
+              className={sortBy === "date" ? "active" : ""}
+              onClick={() => setSortBy("date")}
+            >
+              📅 Date
+            </span>
+            <span
+              className={sortBy === "time" ? "active" : ""}
+              onClick={() => setSortBy("time")}
+            >
+              ⏰ Time
+            </span>
           </div>
         </div>
 
@@ -38,11 +90,11 @@ function StudentDashboard() {
           <h2 className="section-title section-upcoming">Upcoming Events</h2>
         </div>
 
-        {approvedEvents.length === 0 ? (
+        {filteredEvents.length === 0 ? (
           <p>No upcoming events available.</p>
         ) : (
           <div className="events-grid">
-            {approvedEvents.map((event) => (
+            {filteredEvents.map((event) => (
               <div key={event.id} className="event-card">
                 <div className="event-image-wrapper">
                   <img src={event.image} alt={event.title} />

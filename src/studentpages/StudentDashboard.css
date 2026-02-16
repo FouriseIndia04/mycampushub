@@ -432,3 +432,165 @@
     text-align: center;
   }
 }
+/* =========================
+   SEARCH & SORT – PREMIUM
+========================= */
+
+.search-sort-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 28px 0 22px;
+  gap: 20px;
+}
+
+/* SEARCH */
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  padding: 14px 18px;
+  border-radius: 999px;
+  box-shadow: 0 12px 30px rgba(124, 58, 237, 0.12);
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  background: transparent;
+}
+
+/* SORT TOGGLE (NOT CHECKBOX) */
+.sort-toggle {
+  display: flex;
+  background: #f3f4f6;
+  padding: 6px;
+  border-radius: 999px;
+}
+
+.sort-toggle span {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 999px;
+  color: #6b7280;
+  transition: all 0.25s ease;
+}
+
+.sort-toggle span.active {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: white;
+  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.35);
+}
+
+/* =========================
+   TOP RIGHT MICRO FEATURES
+========================= */
+
+.student-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.quick-stats {
+  background: #f3f4f6;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  cursor: default;
+}
+
+.quick-stats span {
+  margin-left: 4px;
+  color: #7c3aed;
+}
+/* =========================
+   GREETING (PREMIUM)
+========================= */
+
+.student-greeting {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: fadeSlideIn 0.6s ease forwards;
+}
+
+.greeting-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  background: linear-gradient(135deg, #ffffff, #f4f1ff);
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.18);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.greeting-text span {
+  font-weight: 700;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================
+   SEARCH ANIMATION
+========================= */
+
+.search-box {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.search-box:focus-within {
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 36px rgba(124, 58, 237, 0.35),
+    0 0 0 6px rgba(124, 58, 237, 0.15);
+}
+
+/* =========================
+   SORT TOGGLE MICRO-MOTION
+========================= */
+
+.sort-toggle span {
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.sort-toggle span.active {
+  transform: scale(1.05);
+}
+
+/* =========================
+   KEYFRAMES
+========================= */
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.18);
+  }
+  50% {
+    box-shadow: 0 12px 30px rgba(124, 58, 237, 0.32);
+  }
+}

@@ -1,0 +1,43 @@
+.categories-section {
+  padding: 80px 0;
+}
+
+.categories-hero img {
+  width: 100%;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.15);
+  margin-bottom: 60px;
+}
+
+.categories-section h2 {
+  text-align: center;
+  font-size: 36px;
+}
+
+.subtext {
+  text-align: center;
+  margin-top: 8px;
+  color: #64748b;
+}
+
+.categories-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap: 24px;
+}
+
+.category-card {
+  background: white;
+  padding: 32px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: 600;
+  transition: all .3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+
+.category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 50px rgba(0,0,0,.12);
+}
