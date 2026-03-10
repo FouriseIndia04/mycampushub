@@ -1,0 +1,112 @@
+.hero-section {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  background:
+    radial-gradient(circle at top left, rgba(124,58,237,.25), transparent 40%),
+    linear-gradient(135deg, #0f172a, #020617);
+}
+
+.hero-card {
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  padding: 72px 56px;
+  border-radius: 32px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.12);
+  animation: fadeUp 0.7s ease;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(124,58,237,0.15);
+  color: #c4b5fd;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  margin-bottom: 22px;
+}
+
+.hero-card h1 {
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: white;
+}
+
+.hero-card h1 span {
+  background: linear-gradient(135deg,#7c3aed,#9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-card p {
+  margin-top: 20px;
+  color: rgba(255,255,255,0.8);
+  max-width: 640px;
+  margin-inline: auto;
+  font-size: 16px;
+}
+
+.hero-actions {
+  margin-top: 36px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.primary-btn {
+  padding: 16px 36px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg,#7c3aed,#9333ea);
+  transition: all 0.3s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 45px rgba(124,58,237,0.6);
+}
+
+.secondary-btn {
+  padding: 16px 32px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: white;
+  cursor: pointer;
+}
+
+.secondary-btn:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile polish */
+@media (max-width: 640px) {
+  .hero-card {
+    padding: 48px 28px;
+  }
+
+  .hero-card h1 {
+    font-size: 36px;
+  }
+}

@@ -1,0 +1,343 @@
+/* =========================
+   ROOT CONTAINER
+========================= */
+.organiser-container {
+  min-height: 100vh;
+  background: #f6f8fb;
+  padding: 32px 40px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   HEADER
+========================= */
+.organiser-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.organiser-header h1 {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.text-highlight {
+  color: #5b2dff;
+}
+
+.subtitle {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* =========================
+   PRIMARY BUTTON
+========================= */
+
+/* 🔥 PREMIUM COMPACT CREATE BUTTON */
+.organiser-header .primary-btn {
+  width: auto;                 /* 👈 NOT full-width */
+  min-width: unset;
+  padding: 10px 16px;          /* 👈 tighter padding */
+  font-size: 14px;             /* 👈 slightly smaller text */
+  border-radius: 999px;        /* 👈 pill style = premium */
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #5b2dff, #7b4dff);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(91, 45, 255, 0.35);
+}
+
+/* =========================
+   FORM SECTION
+========================= */
+.form-section {
+  margin-bottom: 48px;
+}
+
+.event-form {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+}
+
+.form-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #5b2dff;
+  margin-bottom: 24px;
+}
+
+/* =========================
+   FORM GRID
+========================= */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 20px;
+  margin-bottom: 22px;
+}
+
+.event-form input,
+.event-form select,
+.event-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  background: #ffffff;
+}
+
+.event-form textarea {
+  min-height: 110px;
+  resize: vertical;
+  margin-bottom: 22px;
+}
+
+.event-form input:focus,
+.event-form select:focus,
+.event-form textarea:focus {
+  outline: none;
+  border-color: #5b2dff;
+  box-shadow: 0 0 0 3px rgba(91, 45, 255, 0.15);
+}
+
+/* =========================
+   UPLOAD SECTION
+========================= */
+.upload-section {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 10px;
+  margin-bottom: 34px;
+}
+
+.upload-box {
+  padding: 14px 20px;
+  border: 2px dashed #5b2dff;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #5b2dff;
+  cursor: pointer;
+}
+
+.upload-box input {
+  display: none;
+}
+
+.image-preview img {
+  width: 110px;
+  height: 110px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
+   FORM ACTIONS
+========================= */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.btn-outline {
+  background: #ffffff;
+  color: #5b2dff;
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: 1.8px solid #5b2dff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: #5b2dff;
+  color: #ffffff;
+}
+
+/* =========================
+   EVENTS SECTION
+========================= */
+.events-section {
+  margin-bottom: 64px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+/* =========================
+   EVENTS GRID
+========================= */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* =========================
+   EVENT CARD
+========================= */
+.event-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+}
+
+.event-image {
+  position: relative;
+}
+
+.event-image img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.status {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status.approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+/* =========================
+   EVENT BODY
+========================= */
+.event-body {
+  padding: 16px 18px;
+}
+
+.event-body h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.event-body p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .organiser-container {
+    padding: 24px 20px 0;
+  }
+
+  .organiser-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+/* TOP PRIORITY INPUT SPACING */
+.event-form input[name="title"],
+.event-form select[name="category"] {
+  margin-bottom: 6px;
+}
+/* =========================
+   PREMIUM CREATE EVENT ANIMATION
+========================= */
+
+.organiser-header .primary-btn {
+  transition:
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.25s ease;
+  will-change: transform, box-shadow;
+}
+
+/* Hover – lift + glow */
+.organiser-header .primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 30px rgba(91, 45, 255, 0.45),
+    0 0 0 6px rgba(91, 45, 255, 0.12);
+}
+
+/* Active – press */
+.organiser-header .primary-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 6px 16px rgba(91, 45, 255, 0.35);
+}
+
+/* Keyboard focus – premium ring */
+.organiser-header .primary-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(91, 45, 255, 0.35),
+    0 10px 30px rgba(91, 45, 255, 0.4);
+}
+/* =========================
+   FORM BUTTON BALANCE (PREMIUM)
+========================= */
+
+/* Cancel – slightly wider, calm */
+.form-actions .btn-outline {
+  padding: 2px 30px;      /*  wider than submit */
+  min-width: 150px;
+  text-align: center;
+}
+
+/* Submit – tighter, decisive */
+.form-actions .primary-btn {
+  padding: 12px 10px;      /*  reduced width */
+  min-width: 10px;
+  border-radius: 999px;    /*  matches Create Event style */
+}
+
+/* Hover consistency */
+.form-actions .primary-btn:hover {
+  transform: translateY(-2px);
+}
