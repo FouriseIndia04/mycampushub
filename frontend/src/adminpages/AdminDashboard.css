@@ -307,3 +307,153 @@
     font-size: 14px;
   }
 }
+/* ===== NAVBAR UPGRADE ===== */
+.navbar-upgrade {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 100;
+  padding: 18px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* RIGHT NAV */
+.admin-nav-right {
+  display: flex;
+  gap: 25px;
+}
+
+.admin-nav-right span {
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.admin-nav-right span:hover {
+  color: #7c3aed;
+}
+
+/* ORGANISER CONTROL */
+.organiser-control {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  color: #20c997;
+}
+
+/* CARD ANIMATION */
+.stat-card,
+.approval-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stat-card:hover,
+.approval-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(124,58,237,0.15);
+}
+
+/* NAVBAR */
+.navbar-upgrade {
+  position: sticky;
+  top: 0;
+  background: white;
+  padding: 20px 0;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 100;
+}
+
+/* NAV */
+.admin-nav {
+  display: flex;
+  gap: 25px;
+}
+
+.admin-nav span {
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.admin-nav span:hover {
+  color: #7c3aed;
+}
+
+/* ORGANISER PANEL */
+.organiser-panel {
+  margin-top: 20px;
+}
+
+.organiser-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  color: #20c997;
+}
+
+/* ANIMATIONS */
+.stat-card,
+.approval-card,
+.organiser-card {
+  transition: all 0.25s ease;
+}
+
+.stat-card:hover,
+.approval-card:hover,
+.organiser-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(124,58,237,0.15);
+}
+/* =========================
+   NAV TABS – DIFFERENT COLORS
+========================= */
+
+.admin-nav span {
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+}
+
+/* EVENTS TAB (DEFAULT PURPLE) */
+.admin-nav span:first-child {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.admin-nav span:first-child:hover {
+  background: rgba(124, 58, 237, 0.12);
+  color: #7c3aed;
+}
+
+/* ORGANISERS TAB (DIFFERENT COLOR - BLUE) */
+.admin-nav span:nth-child(2) {
+  background: #eef6ff;
+  color: #2563eb;
+}
+
+.admin-nav span:nth-child(2):hover {
+  background: rgba(37, 99, 235, 0.15);
+  color: #1d4ed8;
+}
+
+/* PROFILE TAB (NEUTRAL) */
+.admin-nav span:nth-child(3) {
+  background: #f9fafb;
+  color: #6b7280;
+}
+
+/* =========================
+   ACTIVE STATE (IMPORTANT)
+========================= */
+
+.admin-nav span.active-tab {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: white;
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+}

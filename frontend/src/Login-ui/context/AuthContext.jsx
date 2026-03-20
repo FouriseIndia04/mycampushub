@@ -1,28 +1,47 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+
   const [user, setUser] = useState(null);
 
-  // restore login on refresh
+  // ✅ Load user from localStorage
   useEffect(() => {
-    const stored = localStorage.getItem("user");
-    if (stored) {
-      setUser(JSON.parse(stored));
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser && storedUser !== "undefined") {
+      try {
+        const parsed = JSON.parse(storedUser);
+
+        // 🔥 ensure _id exists
+        if (parsed && parsed._id) {
+          setUser(parsed);
+        } else {
+          localStorage.removeItem("user");
+        }
+
+      } catch {
+        localStorage.removeItem("user");
+      }
     }
   }, []);
 
-  const login = (userData) => {
-    setUser(userData);
- sessionStorage.setItem("authUser", JSON.stringify(userData));
-const storedUser = sessionStorage.getItem("authUser");
+  // ✅ LOGIN
+  const login = (data) => {
+    if (!data || !data._id) {
+      alert("Invalid login response (missing _id)");
+      return;
+    }
 
+    localStorage.setItem("user", JSON.stringify(data));
+    setUser(data);
   };
 
+  // ✅ LOGOUT
   const logout = () => {
-    setUser(null);
     localStorage.removeItem("user");
+    setUser(null);
   };
 
   return (

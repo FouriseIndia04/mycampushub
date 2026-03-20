@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Home from "./get started/pages/Home";
 
 import { AuthProvider } from "./Login-ui/context/AuthContext";
-import { EventProvider } from "./context/EventContext";
 import ProtectedRoute from "./context/ProtectedRoute";
 
 /* ===== LOGIN UI ===== */
@@ -24,7 +23,7 @@ import ViewDetails from "./studentpages/ViewDetails";
 function App() {
   return (
     <AuthProvider>
-      <EventProvider>
+    
         <Router>
           <Routes>
 
@@ -93,7 +92,7 @@ function App() {
 
           </Routes>
         </Router>
-      </EventProvider>
+      
     </AuthProvider>
   );
 }

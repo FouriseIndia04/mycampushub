@@ -594,3 +594,60 @@
     box-shadow: 0 12px 30px rgba(124, 58, 237, 0.32);
   }
 }
+
+
+/* =========================
+   NAVBAR UPGRADE (KEEP WHITE)
+========================= */
+
+.navbar-upgrade {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  padding: 20px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* RIGHT SIDE STRUCTURE */
+.topbar-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* NAV LINKS */
+.nav-links {
+  display: flex;
+  gap: 26px;
+}
+
+.nav-links span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+/* HOVER EFFECT */
+.nav-links span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  transition: 0.3s;
+}
+
+.nav-links span:hover::after {
+  width: 100%;
+}
+
+.nav-links span:hover {
+  color: #7c3aed;
+}

@@ -341,3 +341,70 @@
 .form-actions .primary-btn:hover {
   transform: translateY(-2px);
 }
+/* BLOCK SCREEN */
+.blocked-screen {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #111;
+  text-align: center;
+}
+
+.blocked-screen h1 {
+  color: #ef4444;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+/* ===== NAVBAR ===== */
+.navbar-upgrade {
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  padding: 20px 0;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 100;
+}
+
+.organiser-nav {
+  display: flex;
+  gap: 25px;
+}
+
+.organiser-nav span {
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.organiser-nav span:hover {
+  color: #5b2dff;
+}
+
+/* ===== BLOCK SCREEN ===== */
+.blocked-screen {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #111;
+  text-align: center;
+}
+
+.blocked-screen h1 {
+  color: #ef4444;
+  font-size: 32px;
+}
+
+/* ===== PREMIUM ANIMATION ===== */
+.event-card,
+.event-form {
+  transition: all 0.25s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(91,45,255,0.2);
+}

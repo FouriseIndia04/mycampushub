@@ -1,36 +1,57 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import "./StudentDashboard.css";
-import { EventContext } from "../context/EventContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Login-ui/context/AuthContext";
 
 function StudentDashboard() {
-  const { approvedEvents } = useContext(EventContext);
+
+  const [events, setEvents] = useState([]);
+
   const { user } = useAuth();
   const navigate = useNavigate();
 
   const studentName = user?.name || "Student";
 
-  /* ===== SEARCH + SORT STATE ===== */
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("date");
 
-  const filteredEvents = approvedEvents
+  // ✅ FETCH EVENTS FROM BACKEND
+  useEffect(() => {
+    fetch("http://localhost:5000/api/events")
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          setEvents(data);
+        } else {
+          console.log("Invalid data:", data);
+          setEvents([]);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        setEvents([]);
+      });
+  }, []);
+
+  // ✅ FILTER ONLY APPROVED EVENTS + SEARCH + SORT
+  const filteredEvents = events
+    .filter((e) => e.status === "approved") // 🔥 important fix
     .filter((event) =>
-      event.title.toLowerCase().includes(search.toLowerCase())
+      event.title?.toLowerCase().includes(search.toLowerCase())
     )
     .sort((a, b) => {
       if (sortBy === "date") return new Date(a.date) - new Date(b.date);
-      if (sortBy === "time") return a.time?.localeCompare(b.time || "");
+      if (sortBy === "time") return (a.time || "").localeCompare(b.time || "");
       return 0;
     });
 
   return (
     <div className="student-page">
+
       <div className="student-container">
 
-        {/* ===== TOP BAR ===== */}
-        <div className="student-topbar">
+        <div className="student-topbar navbar-upgrade">
+
           <div className="student-hero">
             <h1>
               Discover <span>Campus Events</span>
@@ -41,29 +62,28 @@ function StudentDashboard() {
             </p>
           </div>
 
-          {/* ===== GREETING + PROFILE ===== */}
-          <div className="student-greeting">
-            <div className="greeting-text">
-              Hi, <span>{studentName}</span> 👋
-            </div>
+          <div className="topbar-right">
+            <div className="student-greeting">
+              <div className="greeting-text">
+                Hi, <span>{studentName}</span> 👋
+              </div>
 
-            <div
-              className="profile-icon"
-              title="Profile"
-              onClick={() => navigate("/profile")}
-            >
-              👤
+              <div
+                className="profile-icon"
+                onClick={() => navigate("/profile")}
+              >
+                👤
+              </div>
             </div>
           </div>
         </div>
 
-        {/* ===== SEARCH + SORT ===== */}
         <div className="search-sort-bar">
           <div className="search-box">
             🔍
             <input
               type="text"
-              placeholder="Search events, workshops, hackathons..."
+              placeholder="Search events..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -85,9 +105,8 @@ function StudentDashboard() {
           </div>
         </div>
 
-        {/* ===== UPCOMING EVENTS ===== */}
         <div className="events-section">
-          <h2 className="section-title section-upcoming">Upcoming Events</h2>
+          <h2 className="section-title">Upcoming Events</h2>
         </div>
 
         {filteredEvents.length === 0 ? (
@@ -95,7 +114,8 @@ function StudentDashboard() {
         ) : (
           <div className="events-grid">
             {filteredEvents.map((event) => (
-              <div key={event.id} className="event-card">
+              <div key={event._id || event.id} className="event-card">
+
                 <div className="event-image-wrapper">
                   <img src={event.image} alt={event.title} />
                   <span className="event-badge">{event.category}</span>
@@ -105,39 +125,27 @@ function StudentDashboard() {
                   <h3>{event.title}</h3>
                   <div className="event-meta">📅 {event.date}</div>
                   <div className="event-meta">📍 {event.venue}</div>
-                  <div className="event-meta">
-                    👥 {event.registrations || 0} attending
-                  </div>
 
                   <div className="event-footer">
                     <span
                       className="details-link"
-                      onClick={() => navigate(`/event/${event.id}`)}
+                      onClick={() =>
+                        navigate(`/event/${event._id || event.id}`, {
+                          state: { event }, // 🔥 CRITICAL FIX
+                        })
+                      }
                     >
                       View Details →
                     </span>
                   </div>
                 </div>
+
               </div>
             ))}
           </div>
         )}
       </div>
 
-      <footer className="premium-footer">
-        <div className="footer-inner">
-          <div className="footer-left">
-            <span className="app-name">CampusHub</span>
-            <span className="divider">•</span>
-            <span className="tagline">Smart Campus Event Management</span>
-          </div>
-          <div className="footer-right">
-            <span>© 2026 CampusHub</span>
-            <span className="divider">|</span>
-            <span>All rights reserved</span>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
