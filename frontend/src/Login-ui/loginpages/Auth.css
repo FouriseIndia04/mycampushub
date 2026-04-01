@@ -1,0 +1,266 @@
+/* =========================
+   AUTH SCOPED STYLES ONLY
+   ========================= */
+
+/* ❌ NO GLOBAL *, NO body, NO button */
+
+/* =========================
+   AUTH PAGE WRAPPER
+   ========================= */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f1f5f9;
+  font-family: outfit, system-ui, sans-serif;
+}
+
+/* =========================
+   MAIN CONTAINER
+   ========================= */
+
+.auth-page .auth-container {
+  display: flex;
+  width: 90%;
+  max-width: 1000px;
+  min-height: 550px;
+  background: #f1f5f9;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   LEFT SIDE
+   ========================= */
+
+.auth-page .auth-left {
+  flex: 1;
+  background-color: #b22cd3;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  border-bottom-left-radius: 60px;
+  border-top-left-radius: 60px;
+}
+
+.auth-page .auth-left h1 {
+  font-size: 30px;
+  margin-top: 60px;
+}
+
+.auth-page .auth-left h2 {
+  font-size: 30px;
+  margin-top: 70px;
+}
+
+.auth-page .auth-left p {
+  line-height: 1.6;
+  margin-top: 60px;
+}
+
+/* =========================
+   RIGHT SIDE
+   ========================= */
+
+.auth-page .auth-right {
+  flex: 1;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.auth-page .auth-box {
+  width: 100%;
+  max-width: 380px;
+}
+
+.auth-page .auth-box h2 {
+  margin-bottom: 20px;
+}
+
+.auth-page .auth-box label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.auth-page .auth-box input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+/* =========================
+   BUTTONS (AUTH ONLY)
+   ========================= */
+
+.auth-page .primary-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  background: linear-gradient(90deg, #7d25c5, #4f46e5);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.auth-page .primary-btn:hover {
+  opacity: 0.95;
+}
+
+/* =========================
+   LINKS & TEXT
+   ========================= */
+
+.auth-page .signup-text,
+.auth-page .switch-text,
+.auth-page .forgot-password {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.auth-page .link-btn {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-page .link-btn:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   GOOGLE LOGIN
+   ========================= */
+
+.auth-page .google-login-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.auth-page .google-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 70px;
+  font-size: 18px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.auth-page .google-icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 992px) {
+  .auth-page .auth-container {
+    flex-direction: column;
+  }
+
+  .auth-page .auth-left {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .auth-page .auth-container {
+    width: 95%;
+    border-radius: 10px;
+  }
+
+  .auth-page .auth-right {
+    padding: 20px;
+  }
+}
+/* =========================
+   PREMIUM QUICK ROLE LOGIN
+========================= */
+
+.premium-roles {
+  margin-top: 26px;
+  padding: 18px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f5f3ff, #eef2ff);
+}
+
+.quick-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #6b21a8;
+  margin-bottom: 16px;
+}
+
+.role-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.role-btn {
+  flex: 1;
+  padding: 14px 0;
+  border-radius: 14px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.25s ease;
+  background: white;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.role-btn:hover {
+  transform: translateY(-3px);
+}
+
+.role-btn.student {
+  color: #4f46e5;
+}
+
+.role-btn.organiser {
+  color: #7c3aed;
+}
+
+.role-btn.admin {
+  color: #b91c1c;
+}
+
+.role-btn.student:hover {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+}
+
+.role-btn.organiser:hover {
+  background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+  color: white;
+}
+
+.role-btn.admin:hover {
+  background: linear-gradient(135deg, #b91c1c, #ef4444);
+  color: white;
+}
